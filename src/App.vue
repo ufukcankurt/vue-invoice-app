@@ -6,6 +6,7 @@
 		>
 			<NavigationComp />
 			<div class="app-content flex flex-column">
+				<InvoiceModal />
 				<router-view />
 			</div>
 		</div>
@@ -21,6 +22,7 @@
 
 <script>
 import NavigationComp from '@/components/NavigationComp.vue';
+import InvoiceModal from '@/components/InvoiceModal.vue';
 export default {
 	data() {
 		return {
@@ -29,6 +31,7 @@ export default {
 	},
 	components: {
 		NavigationComp,
+		InvoiceModal,
 	},
 	created() {
 		this.checkScreen();
@@ -81,9 +84,9 @@ export default {
 	background-color: #141625;
 	color: #fff;
 
-  p{
-    margin-top: 16px;
-  }
+	p {
+		margin-top: 16px;
+	}
 }
 
 button,
