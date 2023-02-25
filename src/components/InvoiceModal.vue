@@ -285,6 +285,16 @@ export default {
 			this.TOGGLE_INVOICE();
 		},
 	},
+	watch:{
+		paymentTerms(){
+			const futureDate = new Date();
+			this.paymentDueDateUnix = futureDate.setDate(futureDate.getDate() + parseInt(this.paymentTerms));
+			this.paymentDueDate = new Date(this.paymentDueDateUnix).toLocaleDateString(
+				'en-US',
+				this.dateOptions
+			);
+		}
+	}
 };
 </script>
 
