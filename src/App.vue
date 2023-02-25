@@ -4,9 +4,9 @@
 			v-if="!mobile"
 			class="app flex flex-column"
 		>
-			<NavigationComp v-if="invoiceModal" />
+			<NavigationComp/>
 			<div class="app-content flex flex-column">
-				<InvoiceModal />
+				<InvoiceModal  v-if="invoiceModal" />
 				<router-view />
 			</div>
 		</div>
