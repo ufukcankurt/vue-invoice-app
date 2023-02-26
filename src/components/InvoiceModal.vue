@@ -8,6 +8,7 @@
 			@submit.prevent="submitForm"
 			class="invoice-content"
 		>
+			<LoadingComp v-show="loading" />
 			<h1>New Invoice</h1>
 
 			<!-- Bill From -->
@@ -243,6 +244,7 @@
 
 <script>
 import db from '../firebase/firebaseInit';
+import LoadingComp from '../components/LoadingComp';
 import { mapMutations } from 'vuex';
 import { uid } from 'uid';
 export default {
@@ -250,6 +252,7 @@ export default {
 	data() {
 		return {
 			dateOptions: { year: 'numeric', month: 'short', day: 'numeric' },
+			loading: null,
 			billerStreetAddress: null,
 			billerCity: null,
 			billerZipCode: null,
@@ -272,6 +275,9 @@ export default {
 			invoiceTotal: 0,
 		};
 	},
+	components: {
+		LoadingComp,
+	},
 	created() {
 		// get current date for invoice date field
 		this.invoiceDateUnix = Date.now();
@@ -280,7 +286,6 @@ export default {
 			this.dateOptions
 		);
 	},
-	components: {},
 	methods: {
 		...mapMutations(['TOGGLE_INVOICE']),
 		closeInvoice() {
@@ -323,6 +328,9 @@ export default {
 				alert('Please ensure you filled out work items!');
 				return;
 			}
+
+			this.loading = true;
+
 			this.calInvoiceTotal();
 
 			const dataBase = db.collection('invoices').doc();
@@ -352,6 +360,7 @@ export default {
 				invoicePaid: null,
 			});
 
+			this.loading = false;
 			this.TOGGLE_INVOICE();
 		},
 
