@@ -6,6 +6,7 @@
 		>
 			<NavigationComp />
 			<div class="app-content flex flex-column">
+				<ModalComp v-if="modalActive"/>
 				<transition name="invoice">
 					<InvoiceModal v-if="invoiceModal" />
 				</transition>
@@ -26,6 +27,7 @@
 import { mapState } from 'vuex';
 import NavigationComp from '@/components/NavigationComp.vue';
 import InvoiceModal from '@/components/InvoiceModal.vue';
+import ModalComp from '@/components/ModalComp.vue';
 export default {
 	data() {
 		return {
@@ -35,6 +37,7 @@ export default {
 	components: {
 		NavigationComp,
 		InvoiceModal,
+		ModalComp,
 	},
 	created() {
 		this.checkScreen();
@@ -53,7 +56,7 @@ export default {
 		},
 	},
 	computed: {
-		...mapState(['invoiceModal']),
+		...mapState(['invoiceModal', 'modalActive']),
 	},
 };
 </script>
