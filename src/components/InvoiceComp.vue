@@ -5,7 +5,7 @@
 	>
 		<div class="left flex">
 			<span class="tracking-number">#{{ invoice.invoiceId }} </span>
-			<span class="due-date">{{ invoice.invoiceDueDate }} </span>
+			<span class="due-date">{{ invoice.paymentDueDate }} </span>
 			<span class="person">{{ invoice.clientName }}</span>
 		</div>
 		<div class="right flex">
