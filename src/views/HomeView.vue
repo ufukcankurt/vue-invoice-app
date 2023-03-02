@@ -41,12 +41,21 @@
 				</div>
 			</div>
 		</div>
+		<!-- Invoice List -->
+		<div class="invoice-list">
+			<InvoiceComp
+				v-for="(invoice, index) in invoiceData"
+				:key="index"
+				:invoice="invoice"
+			/>
+		</div>
 	</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import {mapMutations} from 'vuex';
+import InvoiceComp from '@/components/InvoiceComp.vue';
+import { mapMutations, mapState } from 'vuex';
 export default {
 	name: 'HomeView',
 	data() {
@@ -54,7 +63,9 @@ export default {
 			filterMenu: null,
 		};
 	},
-	components: {},
+	components: {
+		InvoiceComp,
+	},
 	methods: {
 		...mapMutations(['TOGGLE_INVOICE']),
 		toggleFilterMenu() {
@@ -63,6 +74,9 @@ export default {
 		newInvoice() {
 			this.TOGGLE_INVOICE();
 		},
+	},
+	computed: {
+		...mapState(['invoiceData']),
 	},
 };
 </script>
