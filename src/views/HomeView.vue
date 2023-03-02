@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<!-- Invoice List -->
-		<div v-if="invoiceData.length > 3">
+		<div v-if="invoiceData.length > 0">
 			<InvoiceComp
 				v-for="(invoice, index) in invoiceData"
 				:key="index"
